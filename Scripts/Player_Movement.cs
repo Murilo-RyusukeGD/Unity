@@ -4,8 +4,8 @@ using UnityEngine;
 
 /*  
     Programador:                    Murilo Bueno Julião Lemos
-    Data da última atualização:     03/02/2019          
-    Versão:                         0.6.2
+    Data da última atualização:     26/04/2019          
+    Versão:                         0.6.3
     Empresa:                        NinGameOuver Studio
 */
 
@@ -59,7 +59,7 @@ public class Player_Movement : MonoBehaviour {
     [Header("GroundCheck")]
     [Tooltip("Coloque aqui o GroundCheck GameObject.\n" +
     "Put here the GroundCheck GameObject.")]
-    private Transform   groundCheck;                            //Variável que recebe o game o componente Transform do GameObject usado para verificar o chão.
+    private Transform   groundCheck;                            //Variável que recebe o componente Transform do GameObject usado para verificar o chão.
     public  float       checkRadius;                            //Variável usada para definir o tamanho do raio de colisão no groundCheck.
     public  bool        isGround;                               //Variável que recebe a verificação de que o player está no chão.
     public  LayerMask   theGround;                              //Variável que recebe um tipo de layer. Usado para Layer do tipo ground neste caso.
@@ -112,23 +112,23 @@ public class Player_Movement : MonoBehaviour {
     // Use this for first of all
     private void Awake()
     {
-        func_MenuMovement(movementOption);
-    }
+        func_MenuMovement(movementOption);			//Chama a função func_MenuMovement e passa o 
+    }								//enum movementOption para usar no switch
 
     // Use this for initialization
     void Start ()
     {
         if (player.tag == "Player")
         {
-            playerRB = player.GetComponent<Rigidbody2D>();
+            playerRB = player.GetComponent<Rigidbody2D>();	//Pega o componente Rigidbody2D do player
         }
         playerRB.gravityScale = gravity;                        //Dar valor para a gravidade
     }
 
     private void Update()
     {
-        isGround = Physics2D.OverlapCircle(groundCheck.position, checkRadius, theGround);
-
+        isGround = Physics2D.OverlapCircle(groundCheck.position, checkRadius, theGround);	//Testa se um círculo com a posição do groundCheck, com 
+												//raio checkRadius colide com a layer mask theGround
     }
 
     private void FixedUpdate()
